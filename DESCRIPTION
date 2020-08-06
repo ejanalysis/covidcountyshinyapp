@@ -1,0 +1,15 @@
+Package: covidcountyshinyapp
+Title: Shiny App to Download and Plot COVID-19 Daily Data at County Resolution from NYT
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "EJ analyst",
+           family = "",
+           role = c("aut", "cre"),
+           email = "info@ejanalysis.com"
+           )
+Description: Shiny App to Download and Plot COVID-19 Daily Data at County Resolution from NYT
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
