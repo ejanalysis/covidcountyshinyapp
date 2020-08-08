@@ -12,8 +12,9 @@
 library(shiny)
 library(lubridate) # for dates handling
 library(caTools) # for running average of new cases/day
-
-# library(covidcountyshinyapp)
+library(covidcountyshinyapp)
+# library(devtools)
+# devtools::install_github('ejanalysis/covidcountyshinyapp')
 
 # Downloads from website each time shiny app is launched
 # (which is a waste and a bit slow if launched many times a day

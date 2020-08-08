@@ -1,4 +1,5 @@
-# library(covidcountyshinyapp)
+library(covidcountyshinyapp)
+# devtools::install_github('ejanalysis/covidcountyshinyapp')
 library(shiny)
 
 defaultareanamestostart <- c(
