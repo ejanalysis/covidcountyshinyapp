@@ -1,15 +1,12 @@
 #' covidTableWorstFew
 #'
-#' @param xnow
-#' @param n
-#' @param asofhere
-#' @param ...
+#' @param xnow  from covidToday(covidDownload())
+#' @param n how many places, optional
+#' @param asofhere what date, optional
 #'
-#' @return
 #' @export
 #'
-#' @examples
-covidTableWorstFew <- function(xnow, n = 7, asofhere, ...) {
+covidTableWorstFew <- function(xnow, n = 7, asofhere) {
 
   if (missing(xnow)) {
     xnow <- covidToday(covidDownload())

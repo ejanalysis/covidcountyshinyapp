@@ -1,19 +1,17 @@
 #' covidPlotContagious
 #'
-#' @param x
-#' @param countylist
-#' @param ndays
-#' @param dayscontagious
+#' @param x from covidDownload
+#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
+#' @param ndays show only the last ndays days of data
+#' @param dayscontagious how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious
 #' @param add
 #' @param show
 #' @param ylim
 #' @param showlinesforpriordate
-#' @param ...
+#' @param ... passed to plot()
 #'
-#' @return
 #' @export
 #'
-#' @examples
 covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14, add = FALSE, show = TRUE, ylim=NULL, showlinesforpriordate=TRUE, ...) {
 
   if (missing(x)) {
@@ -80,7 +78,7 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
     par(lty = 3)
     if (add) {
       # adding lines to an existing plot
-      lines(here$date, 100*here$percapnow, ...)
+      lines(here$date, 100*here$percapnow)
     } else {
       # new, first plot
       plot(here$date, 100 * here$percapnow, main = maintitle,

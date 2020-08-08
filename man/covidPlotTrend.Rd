@@ -7,11 +7,13 @@
 covidPlotTrend(x, countylist = NULL, ndays, ...)
 }
 \arguments{
-\item{...}{}
-}
-\value{
+\item{x}{from covidDownload()}
 
+\item{ndays}{Filter to only the last n days of data}
+
+\item{...}{other parameters to pass to plot()}
 }
 \description{
-covidPlotTrend
+Draws plot of cumulative total cases (per 100 population) vs date
+for specified US counties
 }

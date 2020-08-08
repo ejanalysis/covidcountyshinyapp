@@ -1,6 +1,6 @@
 #' getcountyfullnames
 #'
-#' @param fips
+#' @param fips Census FIPS code as 5 digits for county
 #'
 #' @return
 #' @export

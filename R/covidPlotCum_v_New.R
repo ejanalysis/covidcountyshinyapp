@@ -1,16 +1,13 @@
 #' covidPlotCum_v_New
 #'
-#' @param x
-#' @param countylist
-#' @param averagingtime
-#' @param ndays
-#' @param ...
+#' @param x from covidDownload
+#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
+#' @param averagingtime how many days to include in the running average
+#' @param ndays show only the last ndays days of data
 #'
-#' @return
 #' @export
 #'
-#' @examples
-covidPlotCum_v_New <- function(x, countylist = NULL, averagingtime=3, ndays, ...) {
+covidPlotCum_v_New <- function(x, countylist = NULL, averagingtime=3, ndays) {
   # countylist = c("District of Columbia, District of Columbia")
   if (missing(x)) {
     x <- covidDownload()

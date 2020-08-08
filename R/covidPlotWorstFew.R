@@ -1,14 +1,12 @@
 #' covidPlotWorstFew
 #'
-#' @param xnow
-#' @param n
-#' @param asofhere
-#' @param ...
+#' @param xnow from covidToday(covidDownload())
+#' @param n how many places, optional
+#' @param asofhere date to use, optional
+#' @param ... passed to barplot
 #'
-#' @return
 #' @export
 #'
-#' @examples
 covidPlotWorstFew <- function(xnow, n = 7, asofhere, ...) {
 
   if (missing(xnow)) {

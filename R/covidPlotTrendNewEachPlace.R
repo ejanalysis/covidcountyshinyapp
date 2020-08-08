@@ -1,18 +1,16 @@
 #' covidPlotTrendNewEachPlace
 #'
-#' @param x
-#' @param countylist
-#' @param averagingtime
-#' @param smoothspan
-#' @param ndays
-#' @param lastn
-#' @param percap
-#' @param ...
+#' @param x from covidDownload
+#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
+#' @param averagingtime how many days to include in the running average
+#' @param smoothspan parameter controlling how localized or smoothed the loess curve should be
+#' @param ndays show only the last ndays days of data
+#' @param lastn how many days to use in fitting line to a few recent days
+#' @param percap should it show per capita or total counts
+#' @param ... passed to plot()
 #'
-#' @return
 #' @export
 #'
-#' @examples
 covidPlotTrendNewEachPlace <- function(x, countylist = c('Montgomery County, Maryland', "District of Columbia, District of Columbia"), averagingtime=3, smoothspan, ndays, lastn=14, percap=TRUE, ...) {
 
   if (missing(x)) {

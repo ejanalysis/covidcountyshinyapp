@@ -1,19 +1,17 @@
 #' covidPlotTrendNewRunFit
 #'
-#' @param x
-#' @param countylist
-#' @param averagingtime
-#' @param ndays
-#' @param lastn
-#' @param fitlwd
-#' @param fitlty
-#' @param autoregress
-#' @param ...
+#' @param x from covidDownload
+#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
+#' @param averagingtime how many days to include in the running average
+#' @param ndays show only the last ndays days of data
+#' @param lastn how many days to use in fitting line to a few recent days
+#' @param fitlwd width of fitted line
+#' @param fitlty type of fitted line
+#' @param autoregress not used
+#' @param ... passed to plot()
 #'
-#' @return
 #' @export
 #'
-#' @examples
 covidPlotTrendNewRunFit <- function(x, countylist = NULL, averagingtime=3, ndays, lastn=14, fitlwd=3, fitlty=1, autoregress=FALSE, ...) {
   if (missing(x)) {x <- covidDownload()}
   if (is.null(countylist)) {countylist <- unique(x$fullname)}

@@ -1,12 +1,10 @@
 #' countiesinstates
+#' Returns all the counties found in the specified states
+#' @param states Full capitalized state names like Maryland
+#' @param allcounties from getcountyfullnames()
 #'
-#' @param states
-#' @param allcounties
-#'
-#' @return
 #' @export
 #'
-#' @examples
 countiesinstates <- function(states, allcounties) {
   # allcounties <- getcountyfullnames()
   # allstates <- sort(c(state.name, 'District of Columbia'))

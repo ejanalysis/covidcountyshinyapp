@@ -1,13 +1,11 @@
 #' latestcontagiouspercap
 #'
-#' @param x
-#' @param countylist
-#' @param dayscontagious
+#' @param x from covidDownload
+#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
+#' @param dayscontagious how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious
 #'
-#' @return
 #' @export
 #'
-#' @examples
 latestcontagiouspercap <- function(x, countylist=NULL, dayscontagious=14) {
 
   # Given new cases per day by county (and each county's total population size),

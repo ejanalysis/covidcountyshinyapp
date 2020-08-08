@@ -3,7 +3,6 @@
 #' @return
 #' @export
 #'
-#' @examples
 covidtrackingDownload <- function() {
 
   # state not county resolution

@@ -1,14 +1,14 @@
 #' sum_counties
 #'
-#' @param df
-#' @param countylist
-#' @param countycolname
-#' @param datecolname
+#' Create appropriately aggregated statistics on cases etc. from all counties in the data.frame
 #'
-#' @return
+#' @param df data.frame from covidDownload()
+#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
+#' @param countycolname optional name of data.frame column with county names
+#' @param datecolname optional name of data.frame column with date
+#'
 #' @export
 #'
-#' @examples
 sum_counties <- function(df,
                          countylist = NULL,
                          countycolname='fullname', datecolname = 'date') {

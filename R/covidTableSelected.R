@@ -1,14 +1,12 @@
 #' covidTableSelected
 #'
-#' @param xnow
-#' @param asofhere
-#' @param ...
+#' @param xnow from covidToday(covidDownload())
+#' @param asofhere date to look at
 #'
 #' @return
 #' @export
 #'
-#' @examples
-covidTableSelected <- function(xnow, asofhere, ...) {
+covidTableSelected <- function(xnow, asofhere) {
 
   if (missing(asofhere)) {
     asofhere <- max(xnow$date)

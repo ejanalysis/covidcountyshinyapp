@@ -1,12 +1,11 @@
 #' lead.zeroes_covid
 #'
-#' @param fips
-#' @param length.desired
+#' @param fips Census FIPS such as for state-county
+#' @param length.desired how many character after leading zeroes added
 #'
 #' @return
 #' @export
 #'
-#' @examples
 lead.zeroes_covid <- function(fips, length.desired) {
   navalues <- which(is.na(fips))
   fips <- as.character(fips)

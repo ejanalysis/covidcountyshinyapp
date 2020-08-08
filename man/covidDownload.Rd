@@ -7,15 +7,23 @@
 covidDownload(
   fileurl = "https://github.com/nytimes/covid-19-data/raw/master/us-counties.csv",
   writecsv = FALSE,
-  localpath = getwd()
+  localpath = getwd(),
+  testing = FALSE
 )
 }
 \arguments{
-\item{localpath}{}
-}
-\value{
+\item{fileurl}{optional but will not really work if csv is not formatted as the one here}
 
+\item{writecsv}{optional logical}
+
+\item{localpath}{optional}
+
+\item{testing}{whether to print extra info to console}
 }
 \description{
 Read daily update of US county-resolution COVID data from NYT dataset on github
+}
+\examples{
+  x <- covidDownload()
+  covidPlotBarNow(x)
 }

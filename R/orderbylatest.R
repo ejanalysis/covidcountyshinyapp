@@ -7,7 +7,6 @@
 #' @return
 #' @export
 #'
-#' @examples
 orderbylatest <- function(myvar, placevar, mydate) {
   # returns number that is new sort order for
   # dataset with multiple places and multiple dates,

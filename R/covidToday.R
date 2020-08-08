@@ -1,14 +1,12 @@
 #' covidToday
 #'
-#' @param x
-#' @param mydate
-#' @param writecsv
-#' @param localpath
+#' @param x from covidDownload
+#' @param mydate what date to use, defaults to most recent one in dataset
+#' @param writecsv logical, optional, whether to write file to disk
+#' @param localpath optional path where to write file
 #'
-#' @return
 #' @export
 #'
-#' @examples
 covidToday <- function(x, mydate=NULL, writecsv=FALSE, localpath=getwd()) {
 
   if (missing(x)) {

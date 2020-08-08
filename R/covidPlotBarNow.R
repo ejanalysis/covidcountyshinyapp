@@ -1,18 +1,16 @@
 #' covidPlotBarNow
 #'
-#' @param x
-#' @param asofhere
-#' @param horiz
-#' @param n
-#' @param noworever
-#' @param dayscontagious
-#' @param inapp
-#' @param ...
+#' @param x from covidDownload
+#' @param asofhere date to look at, optional
+#' @param horiz controls whether barplot is vertical or horizontal, optional
+#' @param n how many places, the worst n, optional
+#' @param noworever worst cumulatively for all past days (ever) or worst now (cum cases for the past dayscontagious only)
+#' @param dayscontagious how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious
+#' @param inapp optional, related to formatting in browser vs RStudio interactive window
+#' @param ... passed to barplot
 #'
-#' @return
 #' @export
 #'
-#' @examples
 covidPlotBarNow <- function(x, asofhere, horiz = FALSE, n=10, noworever='ever', dayscontagious=14, inapp=TRUE, ...) {
 
   if (missing(x)) {

@@ -1,16 +1,14 @@
 #' covidPlotContagiousEach
 #'
-#' @param x
-#' @param countylist
-#' @param ndays
-#' @param dayscontagious
-#' @param digits
-#' @param ...
+#' @param x from covidDownload
+#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
+#' @param ndays show only the last ndays days of data
+#' @param dayscontagious how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious
+#' @param digits controls rounding in legend
+#' @param ... passed to covidPlotContagious()
 #'
-#' @return
 #' @export
 #'
-#' @examples
 covidPlotContagiousEach <- function(x, countylist = c('Montgomery County, Maryland', "District of Columbia, District of Columbia"), ndays, dayscontagious=14, digits=3, ...) {
 
   # get estimates for aggregate of all these counties
@@ -26,7 +24,7 @@ covidPlotContagiousEach <- function(x, countylist = c('Montgomery County, Maryla
   latestdata <- x[x$date == max(x$date), c('fullname', 'percap')]
   latestdata <- latestdata[order(latestdata$percap, decreasing = TRUE), ]
   sortedcountylist <- latestdata$fullname
-  # find worst places as of today ....
+  # find worst places as of today
 
   eachdata <- list()
   latestcontagiouspercap <- vector()
