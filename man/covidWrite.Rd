@@ -7,10 +7,9 @@
 covidWrite(x, localpath = getwd())
 }
 \arguments{
-\item{localpath}{}
-}
-\value{
+\item{x}{from covidDownload}
 
+\item{localpath}{local path to hard drive to store written file}
 }
 \description{
 covidWrite

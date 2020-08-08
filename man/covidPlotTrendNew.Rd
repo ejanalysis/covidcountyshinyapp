@@ -16,10 +16,21 @@ covidPlotTrendNew(
 )
 }
 \arguments{
-\item{...}{}
-}
-\value{
+\item{x}{from covidDownload}
 
+\item{countylist}{vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()\link{ , "fullname"})}
+
+\item{averagingtime}{how many days to include in the running average}
+
+\item{smoothspan}{parameter controlling how localized or smoothed the loess curve should be}
+
+\item{ndays}{show only the last ndays days of data}
+
+\item{lastn}{how many days to use in fitting line to a few recent days}
+
+\item{fitlwd}{width of fitted line}
+
+\item{...}{passed to plot()}
 }
 \description{
 covidPlotTrendNew

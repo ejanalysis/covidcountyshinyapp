@@ -7,7 +7,7 @@
 getcountyfullnames(fips)
 }
 \arguments{
-\item{fips}{}
+\item{fips}{Census FIPS code as 5 digits for county}
 }
 \value{
 

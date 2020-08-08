@@ -7,7 +7,9 @@
 lead.zeroes_covid(fips, length.desired)
 }
 \arguments{
-\item{length.desired}{}
+\item{fips}{Census FIPS such as for state-county}
+
+\item{length.desired}{how many character after leading zeroes added}
 }
 \value{
 

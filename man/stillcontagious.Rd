@@ -7,10 +7,7 @@
 stillcontagious(new, dayscontagious)
 }
 \arguments{
-\item{dayscontagious}{}
-}
-\value{
-
+\item{dayscontagious}{how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious}
 }
 \description{
 stillcontagious

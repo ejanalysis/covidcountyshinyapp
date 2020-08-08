@@ -15,10 +15,17 @@ covidPlotContagiousEach(
 )
 }
 \arguments{
-\item{...}{}
-}
-\value{
+\item{x}{from covidDownload}
 
+\item{countylist}{vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()\link{ , "fullname"})}
+
+\item{ndays}{show only the last ndays days of data}
+
+\item{dayscontagious}{how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious}
+
+\item{digits}{controls rounding in legend}
+
+\item{...}{passed to covidPlotContagious()}
 }
 \description{
 covidPlotContagiousEach

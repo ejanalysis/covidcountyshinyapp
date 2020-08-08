@@ -4,10 +4,12 @@
 \alias{covidTableSelected}
 \title{covidTableSelected}
 \usage{
-covidTableSelected(xnow, asofhere, ...)
+covidTableSelected(xnow, asofhere)
 }
 \arguments{
-\item{...}{}
+\item{xnow}{from covidToday(covidDownload())}
+
+\item{asofhere}{date to look at}
 }
 \value{
 

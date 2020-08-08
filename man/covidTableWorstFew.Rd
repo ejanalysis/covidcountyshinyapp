@@ -4,13 +4,14 @@
 \alias{covidTableWorstFew}
 \title{covidTableWorstFew}
 \usage{
-covidTableWorstFew(xnow, n = 7, asofhere, ...)
+covidTableWorstFew(xnow, n = 7, asofhere)
 }
 \arguments{
-\item{...}{}
-}
-\value{
+\item{xnow}{from covidToday(covidDownload())}
 
+\item{n}{how many places, optional}
+
+\item{asofhere}{what date, optional}
 }
 \description{
 covidTableWorstFew

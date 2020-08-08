@@ -4,13 +4,16 @@
 \alias{covidPlotCum_v_New}
 \title{covidPlotCum_v_New}
 \usage{
-covidPlotCum_v_New(x, countylist = NULL, averagingtime = 3, ndays, ...)
+covidPlotCum_v_New(x, countylist = NULL, averagingtime = 3, ndays)
 }
 \arguments{
-\item{...}{}
-}
-\value{
+\item{x}{from covidDownload}
 
+\item{countylist}{vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()\link{ , "fullname"})}
+
+\item{averagingtime}{how many days to include in the running average}
+
+\item{ndays}{show only the last ndays days of data}
 }
 \description{
 covidPlotCum_v_New

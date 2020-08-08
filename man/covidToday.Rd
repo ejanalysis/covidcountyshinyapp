@@ -7,10 +7,13 @@
 covidToday(x, mydate = NULL, writecsv = FALSE, localpath = getwd())
 }
 \arguments{
-\item{localpath}{}
-}
-\value{
+\item{x}{from covidDownload}
 
+\item{mydate}{what date to use, defaults to most recent one in dataset}
+
+\item{writecsv}{logical, optional, whether to write file to disk}
+
+\item{localpath}{optional path where to write file}
 }
 \description{
 covidToday

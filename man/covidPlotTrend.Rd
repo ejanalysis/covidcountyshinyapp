@@ -9,7 +9,9 @@ covidPlotTrend(x, countylist = NULL, ndays, ...)
 \arguments{
 \item{x}{from covidDownload()}
 
-\item{ndays}{Filter to only the last n days of data}
+\item{countylist}{vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()\link{ , "fullname"})}
+
+\item{ndays}{show only the last ndays days of data}
 
 \item{...}{other parameters to pass to plot()}
 }

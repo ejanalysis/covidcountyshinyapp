@@ -16,10 +16,21 @@ covidPlotBarNow(
 )
 }
 \arguments{
-\item{...}{}
-}
-\value{
+\item{x}{from covidDownload}
 
+\item{asofhere}{date to look at, optional}
+
+\item{horiz}{controls whether barplot is vertical or horizontal, optional}
+
+\item{n}{how many places, the worst n, optional}
+
+\item{noworever}{worst cumulatively for all past days (ever) or worst now (cum cases for the past dayscontagious only)}
+
+\item{dayscontagious}{how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious}
+
+\item{inapp}{optional, related to formatting in browser vs RStudio interactive window}
+
+\item{...}{passed to barplot}
 }
 \description{
 covidPlotBarNow

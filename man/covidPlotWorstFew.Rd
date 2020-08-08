@@ -7,10 +7,13 @@
 covidPlotWorstFew(xnow, n = 7, asofhere, ...)
 }
 \arguments{
-\item{...}{}
-}
-\value{
+\item{xnow}{from covidToday(covidDownload())}
 
+\item{n}{how many places, optional}
+
+\item{asofhere}{date to use, optional}
+
+\item{...}{passed to barplot}
 }
 \description{
 covidPlotWorstFew

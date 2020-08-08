@@ -12,11 +12,14 @@ sum_counties(
 )
 }
 \arguments{
-\item{datecolname}{}
-}
-\value{
+\item{df}{data.frame from covidDownload()}
 
+\item{countylist}{vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()\link{ , "fullname"})}
+
+\item{countycolname}{optional name of data.frame column with county names}
+
+\item{datecolname}{optional name of data.frame column with date}
 }
 \description{
-sum_counties
+Create appropriately aggregated statistics on cases etc. from all counties in the data.frame
 }

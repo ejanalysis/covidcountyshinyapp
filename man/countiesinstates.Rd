@@ -2,16 +2,17 @@
 % Please edit documentation in R/countiesinstates.R
 \name{countiesinstates}
 \alias{countiesinstates}
-\title{countiesinstates}
+\title{countiesinstates
+Returns all the counties found in the specified states}
 \usage{
 countiesinstates(states, allcounties)
 }
 \arguments{
-\item{allcounties}{}
-}
-\value{
+\item{states}{Full capitalized state names like Maryland}
 
+\item{allcounties}{from getcountyfullnames()}
 }
 \description{
 countiesinstates
+Returns all the counties found in the specified states
 }
