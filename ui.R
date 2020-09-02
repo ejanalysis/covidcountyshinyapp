@@ -80,8 +80,8 @@ shinyUI(
 
                              plotOutput('trendnewrunfit'),  # new cases per day
                              plotOutput('trendnew'),        # new cases per day
-                             plotOutput('contagiouseach'),    # new cases in last x days
                              plotOutput('contagious'),       # new cases in last x days
+                             plotOutput('contagiouseach'),    # new cases in last x days
 
                              plotOutput("barworstnow"),  # worst few for current cases per cap
                              plotOutput('barthese')  #,  # worst few for cumulative cases per cap

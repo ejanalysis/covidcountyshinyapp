@@ -32,21 +32,24 @@ sum_counties <- function(df,
   poptot <- sum(pops$x)
   together$pop <- poptot
 
-  # recently new per cap for overall area = pop weighted avg of that for each place !
-
-  # together$newrecentlyper100k <- aggregate(x = df[ , c('newrecentlyper100k','pop')], by = list(date = df[ , datecolname]), FUN = function(z) {
-  #   sum(z[1] * z[2], na.rm = TRUE) / sum(z[2], na.rm = TRUE)
-  # })
-  together$newrecentlyper100k = 0 # temporarily until fixed
-  #
-  # THIS WAS WRONG: (it was the sum of per capita rates across places, but should be the popwtd mean of those percap rates):
-  # sumnewrecentlyper100k <- aggregate(x = df$newrecentlyper100k, by = list(date = df[ , datecolname]), FUN = function(z) {sum(z, na.rm = TRUE)})
-  # together$newrecentlyper100k <- sumnewrecentlyper100k[ , 2]
-
   # note percap is cumulative per cap not new per cap or current per cap
   together$percap <- together$cases / together$pop
   together$oneper <- round(1 / together$percap, 0)
 
   together[ , countycolname] <- 'area' # NOTE THAT THIS RETURNS THE ACTUAL COUNTYNAME IF ONLY ONE IS PASSED TO THIS FUNCTION
+
+
+  # together$newrecentlyper100k = 0 # temporarily until fixed?
+  #
+  # recently new per cap for overall area = pop weighted avg of that for each place ! tried:
+  # together$newrecentlyper100k <- aggregate(x = df[ , c('newrecentlyper100k','pop')], by = list(date = df[ , datecolname]), FUN = function(z) {
+  #   sum(z[1] * z[2], na.rm = TRUE) / sum(z[2], na.rm = TRUE)
+  # })
+  # THIS WAS WRONG: (it was the sum of per capita rates across places, but should be the popwtd mean of those percap rates):
+  # sumnewrecentlyper100k <- aggregate(x = df$newrecentlyper100k, by = list(date = df[ , datecolname]), FUN = function(z) {sum(z, na.rm = TRUE)})
+  # together$newrecentlyper100k <- sumnewrecentlyper100k[ , 2]
+
+  together$newrecentlyper100k <- 100000 * stillcontagious_percap_bycounty(together$date, together$new, together[ , countycolname], together$pop, dayscontagious = 14)
+
   return(together)
 }
