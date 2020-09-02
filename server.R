@@ -70,7 +70,6 @@ shinyServer(function(input, output, session) {
         data <- rbind(data, datasum)
         ##############
         #print('updated dataset based on selected places and dates')
-        rownames(data) <- NULL
         data
     })
 
@@ -94,13 +93,11 @@ shinyServer(function(input, output, session) {
     output$xtable <- DT::renderDataTable(expr = {
         shown <- xlive()
         shown$percap <- round(shown$percap, 5)
-        shown$newrecentlyper100k <- round(shown$newrecentlyper100k, 1)
-        names(shown) <- gsub('percap', 'cum.percap', names(shown))
+        shown <- shown[ , c('date', 'state', 'fullnameST', 'pop', 'deaths', 'cases', 'new', 'percap', 'oneper',
+                            'newrecentlyper100k')]
+        # 'fullname',	'county', 'fips', 'ST',
         names(shown) <- gsub('cases', 'cum.cases', names(shown))
         names(shown) <- gsub('new', 'new.cases', names(shown))
-        shown <- shown[ , c('date', 'state', 'fullnameST', 'pop', 'deaths', 'cum.cases', 'cum.percap', 'new.cases',
-                            'newrecentlyper100k')]
-        #'oneper',        # 'fullname',	'county', 'fips', 'ST',
         shown[order(shown$date, shown$new.cases, decreasing = TRUE), ]
         },
         server = TRUE)
