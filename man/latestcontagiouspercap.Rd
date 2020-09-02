@@ -2,17 +2,21 @@
 % Please edit documentation in R/latestcontagiouspercap.R
 \name{latestcontagiouspercap}
 \alias{latestcontagiouspercap}
-\title{latestcontagiouspercap}
+\title{By county, calc contagious per capita as sum of new cases/cap in past __ days}
 \usage{
 latestcontagiouspercap(x, countylist = NULL, dayscontagious = 14)
 }
 \arguments{
-\item{x}{from covidDownload}
+\item{x}{from covidDownload() a data.frame with fullname, new, date, pop}
 
 \item{countylist}{vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()\link{ , "fullname"})}
 
 \item{dayscontagious}{how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious}
 }
+\value{
+Returns named list of recent cumulative new cases per capita, one per county
+}
 \description{
-latestcontagiouspercap
+For each county in countylist, find most recent date and the sum last N days
+of counts of new cases per capita there where N is dayscontagious
 }

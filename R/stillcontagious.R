@@ -1,11 +1,15 @@
-#' stillcontagious
+#' For one place, calculate cumulative total new cases for last several days
 #'
-#' @param new
-#' @param dayscontagious how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious
+#' Assumes data are sorted in date order oldest to newest
+#' see related code in covidPlotContagious
+#'
+#' @param new vector of new cases each day
+#' @param dayscontagious how many recent days to add up
 #'
 #' @export
 #'
 stillcontagious <- function(new, dayscontagious) {
+  # see similar code in covidPlotContagious
 
   still <- 0
   for (daynum in 1:length(new)) {

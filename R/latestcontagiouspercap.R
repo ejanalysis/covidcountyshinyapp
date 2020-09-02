@@ -1,9 +1,13 @@
-#' latestcontagiouspercap
+#' By county, calc contagious per capita as sum of new cases/cap in past __ days
 #'
-#' @param x from covidDownload
+#' For each county in countylist, find most recent date and the sum last N days
+#'  of counts of new cases per capita there where N is dayscontagious
+#'
+#' @param x from covidDownload() a data.frame with fullname, new, date, pop
 #' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
 #' @param dayscontagious how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious
 #'
+#' @return Returns named list of recent cumulative new cases per capita, one per county
 #' @export
 #'
 latestcontagiouspercap <- function(x, countylist=NULL, dayscontagious=14) {

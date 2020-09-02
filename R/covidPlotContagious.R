@@ -4,10 +4,10 @@
 #' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
 #' @param ndays show only the last ndays days of data
 #' @param dayscontagious how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious
-#' @param add
-#' @param show
-#' @param ylim
-#' @param showlinesforpriordate
+#' @param add adding to existing plot or no
+#' @param show whether to draw plot or just return info
+#' @param ylim as in plot()
+#' @param showlinesforpriordate draw short line fit slopes to show midpoint of linefit to each of several recent sets of days
 #' @param ... passed to plot()
 #'
 #' @export
@@ -41,6 +41,9 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
   # dailychange <- c(0, diff(here$cases))
   # dailychange[1] <- dailychange[2] # since I dont know the true value but it is not zero
   # dailychangepercap <- dailychange / here$pop
+
+  # ** could replace code below with the function stillcontagious_percap_bycounty()
+
   dailychange <- here$new # since it is now provided by covidDownload()
   dailychangepercap <- dailychange / here$pop
 
@@ -51,6 +54,7 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
     )
   }
   oneperasof <- round(1 / here$percapnow, 0)[here$date == asofhere]
+
 
   if (show) {
 

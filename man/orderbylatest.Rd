@@ -2,16 +2,20 @@
 % Please edit documentation in R/orderbylatest.R
 \name{orderbylatest}
 \alias{orderbylatest}
-\title{orderbylatest}
+\title{orderbylatest returns ranks of places based on data on most recent day only}
 \usage{
 orderbylatest(myvar, placevar, mydate)
 }
 \arguments{
-\item{mydate}{}
-}
-\value{
+\item{myvar}{vector of data}
 
+\item{placevar}{vector of county names}
+
+\item{mydate}{vector of dates where you want just most recent}
 }
 \description{
-orderbylatest
+1 = lowest value is rank of 1
+returns number that is new sort order for
+dataset with multiple places and multiple dates,
+based on rank of place-specific myvar on latest date
 }

@@ -66,7 +66,8 @@ covidDownload <- function(fileurl='https://github.com/nytimes/covid-19-data/raw/
     x$new[these] <- c(thesecases[1], diff(thesecases))
   }
 
-  # x$new <- new_from_cum_by_fip(x$cases, fip = x$fips, date = x$date)
+  # done in server.R on the fly for subset of places and dates and defined dayscontagious
+  #   x$newrecentlyper100k <- 100000 * stillcontagious_percap_bycounty(x$date, x$new, x$fullname, x$pop, dayscontagious = dayscontagious)
 
   if (testing) print('done with all but save csv at '); print(Sys.time()); cat('\n')
   if (writecsv) {

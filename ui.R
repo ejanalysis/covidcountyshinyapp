@@ -49,7 +49,7 @@ shinyUI(
                 #                 shiny::tableOutput('toplist'),
                 #                 shiny::hr(),
                 shiny::numericInput(inputId = 'ndays', label =  '# of days to show (last n)',
-                                    value = 135, min = 30, max = 365, step = 1),
+                                    value = 180, min = 30, max = 365, step = 1),
                 shiny::numericInput(inputId = 'lastn', label =  '# of days to fit recent line to',
                                     value = 14, min = 2, max = 60, step = 1),
                 shiny::numericInput(inputId = 'dayscontagious', label =  '# of days new case stays contagious',

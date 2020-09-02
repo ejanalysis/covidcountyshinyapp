@@ -25,6 +25,14 @@ covidPlotContagious(
 
 \item{dayscontagious}{how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious}
 
+\item{add}{adding to existing plot or no}
+
+\item{show}{whether to draw plot or just return info}
+
+\item{ylim}{as in plot()}
+
+\item{showlinesforpriordate}{draw short line fit slopes to show midpoint of linefit to each of several recent sets of days}
+
 \item{...}{passed to plot()}
 }
 \description{

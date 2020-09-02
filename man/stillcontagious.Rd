@@ -2,13 +2,16 @@
 % Please edit documentation in R/stillcontagious.R
 \name{stillcontagious}
 \alias{stillcontagious}
-\title{stillcontagious}
+\title{For one place, calculate cumulative total new cases for last several days}
 \usage{
 stillcontagious(new, dayscontagious)
 }
 \arguments{
-\item{dayscontagious}{how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious}
+\item{new}{vector of new cases each day}
+
+\item{dayscontagious}{how many recent days to add up}
 }
 \description{
-stillcontagious
+Assumes data are sorted in date order oldest to newest
+see related code in covidPlotContagious
 }

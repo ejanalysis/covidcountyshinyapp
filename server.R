@@ -52,6 +52,9 @@ shinyServer(function(input, output, session) {
         countylist <- countylist()
         if (is.null(countylist) | length(countylist) == 0) {countylist <- unique(x$fullname)}
         data <- x[x$fullname %in% countylist, ]  # limit which counties to those selected
+
+        data$newrecentlyper100k <- 100000 * with(data, stillcontagious_percap_bycounty(date, new, fullname, pop, dayscontagious = input$dayscontagious))
+
         data <- data[data$date <= input$throughdate, ] # limit dataset to exclude dates after throughdate
         data <- data[data$date > (max(data$date) - input$ndays), ]  # limit which days to the last ndays
 
@@ -84,15 +87,17 @@ shinyServer(function(input, output, session) {
     })
 
     # output$xtable <- shiny::renderDataTable(x[x$fullname %in% unique(c(input$countylistinput, countiesinstates(input$statelistinput, allcounties))), ])
-    output$xtable <- DT::renderDataTable({
+    output$xtable <- DT::renderDataTable(expr = {
         shown <- xlive()
         shown$percap <- round(shown$percap, 5)
-        shown <- shown[ , c('date', 'state', 'fullnameST', 'pop', 'deaths', 'cases', 'new', 'percap', 'oneper')]
+        shown <- shown[ , c('date', 'state', 'fullnameST', 'pop', 'deaths', 'cases', 'new', 'percap', 'oneper',
+                            'newrecentlyper100k')]
         # 'fullname',	'county', 'fips', 'ST',
         names(shown) <- gsub('cases', 'cum.cases', names(shown))
         names(shown) <- gsub('new', 'new.cases', names(shown))
-        shown[order(shown$date, shown$new, decreasing = TRUE), ]
-        })
+        shown[order(shown$date, shown$new.cases, decreasing = TRUE), ]
+        },
+        server = TRUE)
 
     observeEvent(eventExpr = input$defaultareabutton, handlerExpr = {
         shiny::updateSelectInput(session, inputId = 'countylistinput',

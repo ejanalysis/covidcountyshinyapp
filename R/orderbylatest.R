@@ -1,10 +1,14 @@
-#' orderbylatest
+#' orderbylatest returns ranks of places based on data on most recent day only
 #'
-#' @param myvar
-#' @param placevar
-#' @param mydate
+#'  1 = lowest value is rank of 1
+#'    returns number that is new sort order for
+#'    dataset with multiple places and multiple dates,
+#'    based on rank of place-specific myvar on latest date
 #'
-#' @return
+#' @param myvar vector of data
+#' @param placevar vector of county names
+#' @param mydate vector of dates where you want just most recent
+#'
 #' @export
 #'
 orderbylatest <- function(myvar, placevar, mydate) {

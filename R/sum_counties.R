@@ -17,7 +17,8 @@ sum_counties <- function(df,
   df <- df[ df[ , countycolname] %in% countylist, ]
 
   if (length(countylist) == 1) {
-    return(df[ , c('date', 'cases', 'deaths', 'new', 'pop', 'percap', 'oneper', countycolname)])
+    return(df[ , c('date', 'cases', 'deaths', 'new', 'pop', 'percap', 'oneper', countycolname,
+                   'newrecentlyper100k')])
   }
   together <- aggregate(x = df$cases, by = list(date = df[ , datecolname]), FUN = function(z) {sum(z, na.rm = TRUE)})
   names(together)[2] <- 'cases'
@@ -25,6 +26,8 @@ sum_counties <- function(df,
   together$deaths <- sumdeaths[ , 2]
   sumnew <- aggregate(x = df$new, by = list(date = df[ , datecolname]), FUN = function(z) {sum(z, na.rm = TRUE)})
   together$new <- sumnew[ , 2]
+  sumnewrecentlyper100k <- aggregate(x = df$newrecentlyper100k, by = list(date = df[ , datecolname]), FUN = function(z) {sum(z, na.rm = TRUE)})
+  together$newrecentlyper100k <- sumnewrecentlyper100k[ , 2]
 
   pops <- aggregate(df$pop, by = list(fullname = df[ , countycolname]), FUN = function(z) z[1])
   poptot <- sum(pops$x)
