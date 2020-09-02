@@ -82,7 +82,7 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
     par(lty = 3)
     if (add) {
       # adding lines to an existing plot
-      lines(here$date, 100*here$percapnow)
+      lines(here$date, 100*here$percapnow, ...)
     } else {
       # new, first plot
       plot(here$date, 100 * here$percapnow, main = maintitle,
