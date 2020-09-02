@@ -32,8 +32,13 @@ defaultareanamesviabutton <- c(
     'Fairfax city, Virginia',
     'Arlington County, Virginia',
     'Alexandria city, Virginia',
-    'Loudoun County, Virginia'
+    'Loudoun County, Virginia',
+    'Prince William County',
+    'Manassas Park city, Virginia',
+    'Manassas city, Virginia',
+    'Falls Church city, Virginia'
 )
+
 allcounties <- getcountyfullnames()
 allstates <- sort(c(state.name, 'District of Columbia'))
 

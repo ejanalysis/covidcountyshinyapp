@@ -1,9 +1,9 @@
-library(covidcountyshinyapp)
+library(shiny)
 #  # need to build my pkg, then host it on github, then reinstall to my local using install_github
 #  # devtools::install_github('ejanalysis/covidcountyshinyapp')
 #  # and that way the locally installed version retains info on where it is on github
 #  # so that hosting service can obtain and install it on their server
-library(shiny)
+library(covidcountyshinyapp)
 
 defaultareanamestostart <- c(
     "District of Columbia, District of Columbia",
@@ -16,7 +16,11 @@ defaultareanamestostart <- c(
     'Fairfax city, Virginia',
     'Arlington County, Virginia',
     'Alexandria city, Virginia',
-    'Loudoun County, Virginia'
+    'Loudoun County, Virginia',
+    'Prince William County',
+    'Manassas Park city, Virginia',
+    'Manassas city, Virginia',
+    'Falls Church city, Virginia'
 )
 allcounties <- getcountyfullnames()
 allstates <- sort(c(state.name, 'District of Columbia'))
