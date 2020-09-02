@@ -1,5 +1,8 @@
 library(covidcountyshinyapp)
-# devtools::install_github('ejanalysis/covidcountyshinyapp')
+#  # need to build my pkg, then host it on github, then reinstall to my local using install_github
+#  # devtools::install_github('ejanalysis/covidcountyshinyapp')
+#  # and that way the locally installed version retains info on where it is on github
+#  # so that hosting service can obtain and install it on their server
 library(shiny)
 
 defaultareanamestostart <- c(
