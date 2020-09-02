@@ -87,6 +87,9 @@ shinyServer(function(input, output, session) {
                             'newrecentlyper100k')]
         shown[order(shown$date, shown$fullnameST, decreasing = TRUE), ]
     },
+    options = list(pageLength = 30,
+                   search = list(search = 'sum')
+    ),
     server = TRUE)
 
 
@@ -99,7 +102,7 @@ shinyServer(function(input, output, session) {
     })
 
     wholestatelist <- reactive({
-#        input$stateTOTALlistinput # NOT USED YET
+        #        input$stateTOTALlistinput # NOT USED YET
 
         # a summary row for each state on each day could be added to x dataset?
         # or a separate aggregate for every US states can be done once up front and added into each graphic or bar function?
@@ -123,9 +126,9 @@ shinyServer(function(input, output, session) {
 
     # output$download_graphs <- shiny::downloadHandler(filename = 'covid_data.jpg', content = function(file) {
     # DOES NOT WORK YET
-        # renderPlot({
-            # countylist <- unique(c(input$countylistinput, countiesinstates(input$statelistinput, allcounties)))
-            # countylist <- countylist[!is.na(countylist)]
+    # renderPlot({
+    # countylist <- unique(c(input$countylistinput, countiesinstates(input$statelistinput, allcounties)))
+    # countylist <- countylist[!is.na(countylist)]
     #         covidPlotTrendNew(xlive(), countylist = countylist(),
     #                           averagingtime = input$avgtime, smoothspan = input$smoothspan,
     #                           ndays = input$ndays, lastn = input$lastn)
