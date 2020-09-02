@@ -50,28 +50,46 @@ allstates <- sort(c(state.name, 'District of Columbia'))
 shinyServer(function(input, output, session) {
 
     xlive <- shiny::reactive({
-        # countylist <- unique(c(input$countylistinput, countiesinstates(input$statelistinput, allcounties)))
-        # countylist <- countylist[!is.na(countylist)]
         countylist <- countylist()
         if (is.null(countylist) | length(countylist) == 0) {countylist <- unique(x$fullname)}
         data <- x[x$fullname %in% countylist, ]  # limit which counties to those selected
 
+        # CALCULATE THE CUMULATIVE LAST 14 DAYS OF NEW CASES, PER 1OOK POP, BY COUNTY
         data$newrecentlyper100k <- 100000 * with(data, stillcontagious_percap_bycounty(date, new, fullname, pop, dayscontagious = input$dayscontagious))
 
-        data <- data[data$date <= input$throughdate, ] # limit dataset to exclude dates after throughdate
-        data <- data[data$date > (max(data$date) - input$ndays), ]  # limit which days to the last ndays
+        # LIMIT TO EXCLUDE DATES AFTER ___throughdate, AND ONLY SHOW THE LAST ___ndays DAYS
+        data <- data[data$date <= input$throughdate, ]
+        data <- data[data$date > (max(data$date) - input$ndays), ]
 
-        ############## #### for download only?: aggregate of all selected
+        ############## CALCULATE Aggregate of all selected places ######
         datasum <- sum_counties(data, countylist = countylist, datecolname = 'date', countycolname = 'fullname')
         datasum$fullname <- 'sum'
         datasum$county <- 'sum'; datasum$state <- 'sum'; datasum$fips <- 0; datasum$fullnameST <- 'sum'; datasum$ST <- 'sum'
         if (any(sort(names(data)) != sort(names(datasum)))) {stop('names of columns in data and aggregated data differ')}
         datasum <- datasum[ , names(data)]
         data <- rbind(data, datasum)
-        ##############
-        #print('updated dataset based on selected places and dates')
+        ##############        #print('updated dataset based on selected places and dates')
         data
     })
+
+    output$xtable <- DT::renderDataTable(expr = {
+        shown <- xlive()
+
+        # Rename columns and fix rounding
+        names(shown) <- gsub('cases', 'cum.cases', names(shown))
+        names(shown) <- gsub('new', 'new.cases', names(shown))
+        names(shown) <- gsub('percap', 'cum.percap', names(shown))
+        shown$cum.percap <- round(shown$cum.percap, 5)
+        shown$newrecentlyper100k <- round(shown$newrecentlyper100k, 1)
+
+        # specify which fields to show, in what order
+        shown <- shown[ , c('date', 'state', 'fullnameST', 'pop', 'deaths', 'cum.cases', 'cum.percap', 'new.cases', # 'oneper',
+                            'newrecentlyper100k')]
+        shown[order(shown$date, shown$fullnameST, decreasing = TRUE), ]
+    },
+    server = TRUE)
+
+
 
     countylist <- reactive({
         countylist <- unique(c(input$countylistinput, countiesinstates(input$statelistinput, allcounties)))
@@ -88,19 +106,6 @@ shinyServer(function(input, output, session) {
         # or each selected state only can be aggregated on the fly and added into each graphic or bar function?
 
     })
-
-    # output$xtable <- shiny::renderDataTable(x[x$fullname %in% unique(c(input$countylistinput, countiesinstates(input$statelistinput, allcounties))), ])
-    output$xtable <- DT::renderDataTable(expr = {
-        shown <- xlive()
-        shown$percap <- round(shown$percap, 5)
-        shown <- shown[ , c('date', 'state', 'fullnameST', 'pop', 'deaths', 'cases', 'new', 'percap', 'oneper',
-                            'newrecentlyper100k')]
-        # 'fullname',	'county', 'fips', 'ST',
-        names(shown) <- gsub('cases', 'cum.cases', names(shown))
-        names(shown) <- gsub('new', 'new.cases', names(shown))
-        shown[order(shown$date, shown$new.cases, decreasing = TRUE), ]
-        },
-        server = TRUE)
 
     observeEvent(eventExpr = input$defaultareabutton, handlerExpr = {
         shiny::updateSelectInput(session, inputId = 'countylistinput',
