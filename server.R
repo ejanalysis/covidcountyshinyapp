@@ -33,7 +33,7 @@ defaultareanamesviabutton <- c(
     'Arlington County, Virginia',
     'Alexandria city, Virginia',
     'Loudoun County, Virginia',
-    'Prince William County',
+    'Prince William County, Virginia',
     'Manassas Park city, Virginia',
     'Manassas city, Virginia',
     'Falls Church city, Virginia'
@@ -77,7 +77,7 @@ shinyServer(function(input, output, session) {
 
         # Rename columns and fix rounding
         names(shown) <- gsub('cases', 'cum.cases', names(shown))
-        names(shown) <- gsub('new', 'new.cases', names(shown))
+        names(shown)[names(shown) == 'new'] <- 'new.cases' # avoid changing newrecentlyper100k
         names(shown) <- gsub('percap', 'cum.percap', names(shown))
         shown$cum.percap <- round(shown$cum.percap, 5)
         shown$newrecentlyper100k <- round(shown$newrecentlyper100k, 1)

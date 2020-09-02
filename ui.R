@@ -17,7 +17,7 @@ defaultareanamestostart <- c(
     'Arlington County, Virginia',
     'Alexandria city, Virginia',
     'Loudoun County, Virginia',
-    'Prince William County',
+    'Prince William County, Virginia',
     'Manassas Park city, Virginia',
     'Manassas city, Virginia',
     'Falls Church city, Virginia'
