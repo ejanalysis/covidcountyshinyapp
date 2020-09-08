@@ -8,7 +8,7 @@ covidPlotBarNow(
   x,
   asofhere,
   horiz = FALSE,
-  n = 10,
+  n = 15,
   noworever = "ever",
   dayscontagious = 14,
   inapp = TRUE,

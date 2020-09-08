@@ -204,7 +204,7 @@ shinyServer(function(input, output, session) {
     output$barthese <- renderPlot({
         # countylist <- unique(c(input$countylistinput, countiesinstates(input$statelistinput, allcounties)))
         # countylist <- countylist[!is.na(countylist)]
-        covidPlotBarNow(x = xlive(), horiz = TRUE,
+        covidPlotBarNow(x = xlive(), horiz = TRUE, n=15,
                         # covidPlotBarNow(x = x[x$fullname %in% countylist, ], horiz = TRUE,
                         main = 'Ever a confirmed case (cumulative, not necessarily still contagious)',
                         noworever = 'ever', inapp = TRUE)
@@ -214,7 +214,7 @@ shinyServer(function(input, output, session) {
         # countylist <- unique(c(input$countylistinput, countiesinstates(input$statelistinput, allcounties)))
         # countylist <- countylist[!is.na(countylist)]
         # covidPlotBarNow(x = x[x$fullname %in% countylist, ], horiz = TRUE,
-        covidPlotBarNow(x = xlive(), horiz = TRUE,
+        covidPlotBarNow(x = xlive(), horiz = TRUE,n=15,
                         main = paste('Recently confirmed case (in last', input$dayscontagious, 'days, so maybe still contagious)'),
                         dayscontagious = input$dayscontagious,
                         noworever = 'now', inapp = TRUE)
