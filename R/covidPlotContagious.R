@@ -4,6 +4,7 @@
 #' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
 #' @param ndays show only the last ndays days of data
 #' @param dayscontagious how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious
+#' @param perx per how many, such as per 100 or per 100000
 #' @param add adding to existing plot or no
 #' @param show whether to draw plot or just return info
 #' @param ylim as in plot()
@@ -12,7 +13,7 @@
 #'
 #' @export
 #'
-covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14, add = FALSE, show = TRUE, ylim=NULL, showlinesforpriordate=TRUE, ...) {
+covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14, perx=100000, add = FALSE, show = TRUE, ylim=NULL, showlinesforpriordate=TRUE, ...) {
 
   if (missing(x)) {
     x <- covidDownload()
@@ -62,10 +63,10 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
                        # round(100*here$percapnow[here$date == asofhere], 3),
                        # 'per 100 people (1 in', oneperasof, ') in ', myplace,
                        sep = '')
-    ylab = paste('Still contagious per 100 people, assuming only stay contagious', dayscontagious, 'days')
+    ylab = paste('Still contagious per', perx, 'people, assuming only stay contagious', dayscontagious, 'days')
 
     if (is.null(ylim)) {
-      myylim <- 100 * c(min(here$percapnow, na.rm = T), max(here$percapnow, na.rm = T))
+      myylim <- perx * c(min(here$percapnow, na.rm = T), max(here$percapnow, na.rm = T))
       # or maybe make lower bound zero??
     } else {
       myylim <- ylim
@@ -74,7 +75,7 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
     if (showlinesforpriordate) {
       # date when prevalence first was almost same as currently
       # ******* THIS IS NOT THE RIGHT NUMBER IF YOU CHANGE LAST N DAYS TO SMALLER VALUE, AS CALCULATED NOW
-      whenwasliketoday <- min(here$date[100*here$percapnow > tail(100*here$percapnow, 1)])
+      whenwasliketoday <- min(here$date[perx*here$percapnow > tail(perx*here$percapnow, 1)])
       dateinfo <- paste('Now is back down to same prevalence as it was around', whenwasliketoday)
     } else {
       dateinfo <- ''
@@ -82,16 +83,16 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
     par(lty = 3)
     if (add) {
       # adding lines to an existing plot
-      lines(here$date, 100*here$percapnow, ...)
+      lines(here$date, perx*here$percapnow, ...)
     } else {
       # new, first plot
-      plot(here$date, 100 * here$percapnow, main = maintitle,
+      plot(here$date, perx * here$percapnow, main = maintitle,
            sub = dateinfo,
            ylim = myylim,  #asp = 0.5,
            xlab = 'Date', ylab = ylab, ...)
     }
     if (showlinesforpriordate) {
-      abline(h = tail(100*here$percapnow, 1) ) # level of most recent day seen as horizontal line
+      abline(h = tail(perx*here$percapnow, 1) ) # level of most recent day seen as horizontal line
       abline(v = whenwasliketoday) # vertical line on date when prevalence first was almost same as currently
     }
   }

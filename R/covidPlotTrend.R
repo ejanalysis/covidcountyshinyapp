@@ -1,16 +1,17 @@
 #' covidPlotTrend
 #'
-#' Draws plot of cumulative total cases (per 100 population) vs date
+#' Draws plot of cumulative total cases (per perx population) vs date
 #' for specified US counties
 #'
 #' @param x from covidDownload()
+#' @param perx
 #' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
 #' @param ndays show only the last ndays days of data
 #' @param ... other parameters to pass to plot()
 #'
 #' @export
 #'
-covidPlotTrend <- function(x, countylist = NULL, ndays, ...) {
+covidPlotTrend <- function(x, countylist = NULL, perx=100000, ndays, ...) {
 
   if (missing(x)) {
     x <- covidDownload()
@@ -52,9 +53,9 @@ covidPlotTrend <- function(x, countylist = NULL, ndays, ...) {
     # *** ONE LOCATION -
     # if (length(myplace) == 0) {return() } # no data to plot
 
-    maintitle <- paste(round(100*here$percap[here$date == asofhere], 1), 'per 100 people (1 in', oneperasof, ') in', myplace, 'was ever confirmed infected through', asofhere)
+    maintitle <- paste(round(perx*here$percap[here$date == asofhere], 1), 'per ',perx, 'people (1 in', oneperasof, ') in', myplace, 'was ever confirmed infected through', asofhere)
 
-    myylim <- 100 * c(min(here$percap, na.rm = T), max(here$percap, na.rm = T))
+    myylim <- perx * c(min(here$percap, na.rm = T), max(here$percap, na.rm = T))
   # } else {
     # TWO LOCATIONS TO PLOT - define here2, plot title and range of y values
     # here2 <- x[x$fullname == myplace2, ]
@@ -68,9 +69,9 @@ covidPlotTrend <- function(x, countylist = NULL, ndays, ...) {
   # *** PLOT GRAPH
   # LEGEND OR lty get reversed if inserting new county before single one shown!!
   par(lty = 3)
-  plot(here$date, 100*here$percap, main = maintitle,
+  plot(here$date, perx*here$percap, main = maintitle,
        ylim = myylim,  #asp = 0.5,
-       xlab = 'Date', ylab = 'Reported cases per 100 people', ...)
+       xlab = 'Date', ylab = 'Reported cases per', perx, 'people', ...)
 
 
   # To see NEW cases added each day, and running avg of that:

@@ -21,23 +21,23 @@ covidPlotBarNow <- function(x, asofhere, horiz = FALSE, n=15, noworever='ever', 
   }
 
   if (!missing(horiz) & horiz == TRUE) {
-    xl <- 'cases per 100 people'
+    xl <- 'cases per 100k people'
     yl <- ''
   } else {
     xl <- ''
-    yl <- 'cases per 100 people'
+    yl <- 'cases per 100k people'
   }
 
   if (noworever == 'ever') {
     xnow <- covidToday(x, mydate = asofhere)
     xnow.withdata <- xnow[!is.na(xnow$percap), ]
-    myvar <- 100 * xnow.withdata$percap
+    myvar <- 100000 * xnow.withdata$percap
     worstfewplaces <- tail(xnow.withdata$fullnameST[order(myvar, decreasing = FALSE)], n)
     worstfewvalues <- tail(myvar[order(myvar, decreasing = FALSE)], n)
   } else {
     if (noworever == 'now') {
       countylist <- unique(x$fullname)
-      myvar <- 100 * latestcontagiouspercap(x, countylist = countylist, dayscontagious = dayscontagious)
+      myvar <- 100000 * latestcontagiouspercap(x, countylist = countylist, dayscontagious = dayscontagious)
       worstfewplaces <- tail(countylist[order(myvar, decreasing = FALSE)], n)
       worstfewplaces <- x$fullnameST[match(worstfewplaces, x$fullname)]
       worstfewvalues <- tail(myvar[order(myvar, decreasing = FALSE)], n)

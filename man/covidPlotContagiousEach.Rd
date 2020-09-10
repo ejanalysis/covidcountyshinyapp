@@ -10,6 +10,7 @@ covidPlotContagiousEach(
     "District of Columbia, District of Columbia"),
   ndays,
   dayscontagious = 14,
+  perx = 1e+05,
   digits = 3,
   ...
 )
@@ -22,6 +23,8 @@ covidPlotContagiousEach(
 \item{ndays}{show only the last ndays days of data}
 
 \item{dayscontagious}{how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious}
+
+\item{perx}{per how many people such as per 100 or per 100000}
 
 \item{digits}{controls rounding in legend}
 

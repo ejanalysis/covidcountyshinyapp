@@ -4,15 +4,16 @@
 #' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
 #' @param ndays show only the last ndays days of data
 #' @param dayscontagious how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious
+#' @param perx per how many people such as per 100 or per 100000
 #' @param digits controls rounding in legend
 #' @param ... passed to covidPlotContagious()
 #'
 #' @export
 #'
-covidPlotContagiousEach <- function(x, countylist = c('Montgomery County, Maryland', "District of Columbia, District of Columbia"), ndays, dayscontagious=14, digits=3, ...) {
+covidPlotContagiousEach <- function(x, countylist = c('Montgomery County, Maryland', "District of Columbia, District of Columbia"), ndays, dayscontagious=14, perx=100000, digits=3, ...) {
 
   # get estimates for aggregate of all these counties
-  mydata <- covidPlotContagious(x, countylist = countylist, show = FALSE, ndays = ndays, dayscontagious = dayscontagious)
+  mydata <- covidPlotContagious(x, countylist = countylist, show = FALSE, ndays = ndays, dayscontagious = dayscontagious, perx=perx)
   # that is max of aggr not max of any 1:
   # myylim <- 100 * c(min(mydata$percapnow, na.rm = T), 1.1 * max(mydata$percapnow, na.rm = T))
   # myylim <- 100 * c(0, max(mydata$percapnow, na.rm = T))
@@ -30,9 +31,9 @@ covidPlotContagiousEach <- function(x, countylist = c('Montgomery County, Maryla
   latestcontagiouspercap <- vector()
   for (i in 1:length(countylist)) {
     if (i == 1) {
-      eachdata[[i]] <- covidPlotContagious(x, add = FALSE, countylist = sortedcountylist[i], show = TRUE, col = mycolors[i], type = 'b', pch = i - 1, ndays = ndays, dayscontagious = dayscontagious, showlinesforpriordate = FALSE, ...)
+      eachdata[[i]] <- covidPlotContagious(x, add = FALSE, countylist = sortedcountylist[i], show = TRUE, col = mycolors[i], type = 'b', pch = i - 1, ndays = ndays, dayscontagious = dayscontagious, perx=perx, showlinesforpriordate = FALSE, ...)
     } else {
-      eachdata[[i]] <- covidPlotContagious(x, add = TRUE,  countylist = sortedcountylist[i], show = TRUE, col = mycolors[i], type = 'b', pch = i - 1, ndays = ndays, dayscontagious = dayscontagious, showlinesforpriordate = FALSE, ...)
+      eachdata[[i]] <- covidPlotContagious(x, add = TRUE,  countylist = sortedcountylist[i], show = TRUE, col = mycolors[i], type = 'b', pch = i - 1, ndays = ndays, dayscontagious = dayscontagious, perx=perx, showlinesforpriordate = FALSE, ...)
     }
     latestcontagiouspercap[i] <- (eachdata[[i]])[ eachdata[[i]]$date == max(eachdata[[i]]$date), 'percapnow']
   }
@@ -46,6 +47,6 @@ covidPlotContagiousEach <- function(x, countylist = c('Montgomery County, Maryla
   newsortedpch <- (oldpch)[newsort]
   latestcontagiouspercap <-  latestcontagiouspercap[newsort] # sort
 
-  legend('topleft', legend = paste(round(100 * latestcontagiouspercap, digits = digits), '/100:', newsortedcountylist),
+  legend('topleft', legend = paste(round(perx * latestcontagiouspercap, digits = digits), '/', perx,':', newsortedcountylist),
          col = mycolors, lty = 1, pch =  newsortedpch)
 }

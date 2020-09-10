@@ -5,9 +5,9 @@ account: ejanalysis
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2743998
-bundleId: 3586099
+bundleId: 3606455
 url: https://ejanalysis.shinyapps.io/covidcountyshinyapp/
-when: 1599088309.56698
+when: 1599574530.57986
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: .Rbuildignore|DESCRIPTION|LICENSE|LICENSE.md|NAMESPACE|data/countyinfo.rdata|data/countypopdata_2013_to_2017.rdata|data/statenameabbrev.rdata|man|R

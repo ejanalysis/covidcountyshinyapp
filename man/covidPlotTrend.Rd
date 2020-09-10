@@ -4,7 +4,7 @@
 \alias{covidPlotTrend}
 \title{covidPlotTrend}
 \usage{
-covidPlotTrend(x, countylist = NULL, ndays, ...)
+covidPlotTrend(x, countylist = NULL, perx = 1e+05, ndays, ...)
 }
 \arguments{
 \item{x}{from covidDownload()}
@@ -16,6 +16,6 @@ covidPlotTrend(x, countylist = NULL, ndays, ...)
 \item{...}{other parameters to pass to plot()}
 }
 \description{
-Draws plot of cumulative total cases (per 100 population) vs date
+Draws plot of cumulative total cases (per perx population) vs date
 for specified US counties
 }
