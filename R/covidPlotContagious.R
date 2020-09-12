@@ -36,13 +36,6 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
   here <- here[(NROW(here) - ndays + 1):NROW(here), ] # show only the last n days of data
   asofhere <- max(here$date)
 
-  # I want to plot cumulative new cases added in past dayscontagious days as rolling sum
-  # so start with delta in cases
-  # To see NEW cases added each day, and running avg of that:
-  # dailychange <- c(0, diff(here$cases))
-  # dailychange[1] <- dailychange[2] # since I dont know the true value but it is not zero
-  # dailychangepercap <- dailychange / here$pop
-
   # ** could replace code below with the function stillcontagious_percap_bycounty()
 
   dailychange <- here$new # since it is now provided by covidDownload()
@@ -56,14 +49,13 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
   }
   oneperasof <- round(1 / here$percapnow, 0)[here$date == asofhere]
 
-
   if (show) {
 
     maintitle <- paste('Still contagious as of ', asofhere, ' assuming contagious for just the ', dayscontagious, ' days after reported positive test',
                        # round(100*here$percapnow[here$date == asofhere], 3),
                        # 'per 100 people (1 in', oneperasof, ') in ', myplace,
                        sep = '')
-    ylab = paste('Still contagious per', perx, 'people, assuming only stay contagious', dayscontagious, 'days')
+    ylab = paste('Still contagious/', perx, 'people, if contagious for', dayscontagious, 'days')
 
     if (is.null(ylim)) {
       myylim <- perx * c(min(here$percapnow, na.rm = T), max(here$percapnow, na.rm = T))

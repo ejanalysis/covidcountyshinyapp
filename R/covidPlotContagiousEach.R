@@ -5,7 +5,7 @@
 #' @param ndays show only the last ndays days of data
 #' @param dayscontagious how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious
 #' @param perx per how many people such as per 100 or per 100000
-#' @param digits controls rounding in legend
+#' @param digits controls number of significant digits in legend
 #' @param ... passed to covidPlotContagious()
 #'
 #' @export
@@ -47,6 +47,14 @@ covidPlotContagiousEach <- function(x, countylist = c('Montgomery County, Maryla
   newsortedpch <- (oldpch)[newsort]
   latestcontagiouspercap <-  latestcontagiouspercap[newsort] # sort
 
-  legend('topleft', legend = paste(round(perx * latestcontagiouspercap, digits = digits), '/', perx,':', newsortedcountylist),
+  zeroes <- round(log10(perx))
+  perxlegend <- perx
+  if (zeroes >= 6) {
+    perxlegend <- paste(perxlegend/1e6, 'mill', sep = '')
+  } else {
+    if (zeroes >= 3) perxlegend <- paste(perxlegend/1000, 'k', sep = '')
+  }
+  legend('topleft', legend = paste(signif(perx * latestcontagiouspercap, digits = digits), '/', perxlegend,':', newsortedcountylist),
          col = mycolors, lty = 1, pch =  newsortedpch)
 }
+

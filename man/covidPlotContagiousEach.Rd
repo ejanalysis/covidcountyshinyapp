@@ -26,7 +26,7 @@ covidPlotContagiousEach(
 
 \item{perx}{per how many people such as per 100 or per 100000}
 
-\item{digits}{controls rounding in legend}
+\item{digits}{controls number of significant digits in legend}
 
 \item{...}{passed to covidPlotContagious()}
 }
