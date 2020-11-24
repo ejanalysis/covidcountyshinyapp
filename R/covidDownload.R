@@ -58,13 +58,18 @@ covidDownload <- function(fileurl='https://github.com/nytimes/covid-19-data/raw/
   # c('date', 'fips', 'fullname', 'cases', 'percap', 'oneper')
   if (testing) {print('finished all except new cases per day per place at '); print(Sys.time()); cat('\n')} # 1 second
 
-  # ## could do this more efficiently, but this loop works  # TAKES 11 SECONDS !!!
+
+  # ## could do this more efficiently, but this loop works
+  # TAKES 11 SECONDS !!! try replacing with this function to be optimized that took 7 seconds last time checked
+  # x$new <- new_from_cum_by_fip(x$cases, x$fullname, x$date)
+  # but until that function is tested, do this slower loop:
   x$new <- 0
   for (thisplace in unique(x$fullname)) {
     these <- x$fullname == thisplace
     thesecases <- x$cases[these]
     x$new[these] <- c(thesecases[1], diff(thesecases))
   }
+
 
   # done in server.R on the fly for subset of places and dates and defined dayscontagious
   #   x$newrecentlyper100k <- 100000 * stillcontagious_percap_bycounty(x$date, x$new, x$fullname, x$pop, dayscontagious = dayscontagious)
