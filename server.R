@@ -1,3 +1,11 @@
+# TO PUBLISH ON SERVER AS WEB APP:
+#  # need to build my pkg, then host it on github, then reinstall to my local using install_github
+#  # devtools::install_github('ejanalysis/covidcountyshinyapp')
+#  Then publish update of just ui.R and server.R files
+#  # and that way the locally installed version retains info on where it is on github
+#  # so that hosting service can obtain and install it on their server
+
+
 # for county daily data see 'https://github.com/nytimes/covid-19-data/raw/master/us-counties.csv'
 # for state daily data incl pct positive of all tests see
 #   https://covidtracking.com/api/v1/states/daily.csv

@@ -1,9 +1,11 @@
-library(shiny)
+# TO PUBLISH ON SERVER AS WEB APP:
 #  # need to build my pkg, then host it on github, then reinstall to my local using install_github
 #  # devtools::install_github('ejanalysis/covidcountyshinyapp')
 #  Then publish update of just ui.R and server.R files
 #  # and that way the locally installed version retains info on where it is on github
 #  # so that hosting service can obtain and install it on their server
+
+library(shiny)
 library(covidcountyshinyapp)
 
 defaultareanamestostart <- c(
