@@ -68,7 +68,8 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
       # date when prevalence first was almost same as currently
       # ******* THIS IS NOT THE RIGHT NUMBER IF YOU CHANGE LAST N DAYS TO SMALLER VALUE, AS CALCULATED NOW
       whenwasliketoday <- min(here$date[perx*here$percapnow > tail(perx*here$percapnow, 1)])
-      dateinfo <- paste('Now is back down to same prevalence as it was around', whenwasliketoday)
+      if (is.na(whenwasliketoday)) {whenwasliketoday <- 'at no prior time.'}
+      dateinfo <- paste('Now prevalence is same as it was ', whenwasliketoday)
     } else {
       dateinfo <- ''
     }

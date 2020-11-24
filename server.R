@@ -61,6 +61,11 @@ shinyServer(function(input, output, session) {
         data <- data[data$date <= input$throughdate, ]
         data <- data[data$date > (max(data$date) - input$ndays), ]
 
+        # FACTOR IN ASCERTAINMENT BIAS HERE?
+        quantfields <- c('new', 'cases', 'percap', 'newrecentlyper100k')
+        data[ , quantfields] <- data[ , quantfields] * as.numeric(input$ascertainmentbias)
+        data$oneper <- round(data$oneper / as.numeric(input$ascertainmentbias), 0)
+
         ############## CALCULATE Aggregate of all selected places ######
         datasum <- sum_counties(data, countylist = countylist, datecolname = 'date', countycolname = 'fullname')
         datasum$fullname <- 'sum'
@@ -92,6 +97,12 @@ shinyServer(function(input, output, session) {
     ),
     server = TRUE)
 
+    output$assumed.dayscontagious <- renderText({
+        paste('Assuming # currently contagious = all new cases in the last ', input$dayscontagious, 'days', sep = '' )
+    })
+    output$assumed.ascertainmentbias <- renderText({
+        paste('Assuming # of true cases = ', as.numeric(input$ascertainmentbias), 'x tested positive', sep = '' )
+    })
 
 
     countylist <- reactive({

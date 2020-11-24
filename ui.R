@@ -1,6 +1,7 @@
 library(shiny)
 #  # need to build my pkg, then host it on github, then reinstall to my local using install_github
 #  # devtools::install_github('ejanalysis/covidcountyshinyapp')
+#  Then publish update of just ui.R and server.R files
 #  # and that way the locally installed version retains info on where it is on github
 #  # so that hosting service can obtain and install it on their server
 library(covidcountyshinyapp)
@@ -67,6 +68,9 @@ shinyUI(
                                     value = 0.15, min = 0.01, max = 0.9, step = 0.01),
                 shiny::dateInput(inputId = 'throughdate', label = 'Exclude data after',
                                  value = Sys.Date(), min = '2020-01-01', max = Sys.Date()),
+                shiny::radioButtons(inputId = 'ascertainmentbias', label = 'Actual cases per positive test (ascertainment)',
+                                    choices = c(1,5,10), selected = 1),
+
                 shiny::downloadButton(label = 'Download dataset for selected places', outputId = 'download_data'),
 
                 # shiny::downloadButton(label = 'Download graphs for selected places', outputId = 'download_graphs'),
@@ -78,13 +82,19 @@ shinyUI(
                     ##### panel 1 ######
                     tabPanel(title = 'Plots',
 
-                             plotOutput('trendnewrunfit'),  # new cases per day
-                             plotOutput('trendnew'),        # new cases per day
+                             shiny::hr(),
+                             textOutput('assumed.ascertainmentbias'),
+                             textOutput('assumed.dayscontagious'),
+                             shiny::hr(),
+
                              plotOutput('contagious'),       # new cases in last x days
                              plotOutput('contagiouseach'),    # new cases in last x days
 
                              plotOutput("barworstnow"),  # worst few for current cases per cap
-                             plotOutput('barthese')  #,  # worst few for cumulative cases per cap
+                             plotOutput('barthese'),  #,  # worst few for cumulative cases per cap
+
+                             plotOutput('trendnewrunfit'),  # new cases per day
+                             plotOutput('trendnew')        # new cases per day
 
                              # plotOutput('cumvnew'),       # cumulative cases (sum of new cases in all prior days)
                              # plotOutput("trendplot"),     # cumulative cases for aggregate of counties
