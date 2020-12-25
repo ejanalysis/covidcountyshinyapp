@@ -204,6 +204,7 @@ shinyServer(function(input, output, session) {
         # countylist <- unique(c(input$countylistinput, countiesinstates(input$statelistinput, allcounties)))
         # countylist <- countylist[!is.na(countylist)]
         covidPlotContagiousEach(xlive(), countylist = c(countylist(), 'sum') ,
+                                crop_length_legend=10,
                                 ndays = input$ndays, dayscontagious = input$dayscontagious)
     })
 

@@ -12,6 +12,7 @@ covidPlotContagiousEach(
   dayscontagious = 14,
   perx = 1e+05,
   digits = 3,
+  crop_length_legend = 10,
   ...
 )
 }
@@ -27,6 +28,8 @@ covidPlotContagiousEach(
 \item{perx}{per how many people such as per 100 or per 100000}
 
 \item{digits}{controls number of significant digits in legend}
+
+\item{crop_length_legend}{how many characters to use of the place names in legend}
 
 \item{...}{passed to covidPlotContagious()}
 }
