@@ -51,7 +51,7 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
 
   if (show) {
 
-    maintitle <- paste('Still contagious as of ', asofhere, ' assuming contagious for just the ', dayscontagious, ' days after reported positive test',
+    maintitle <- paste('Still contagious as of ', asofhere, ' if contagious for ', dayscontagious, ' days after reported positive',
                        # round(100*here$percapnow[here$date == asofhere], 3),
                        # 'per 100 people (1 in', oneperasof, ') in ', myplace,
                        sep = '')
