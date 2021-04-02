@@ -14,7 +14,7 @@ sum_counties(
 \arguments{
 \item{df}{data.frame from covidDownload()}
 
-\item{countylist}{vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()\link{ , "fullname"})}
+\item{countylist}{vector of county names like "Montgomery County, Maryland" as found in unique fullname entries in covidDownload()}
 
 \item{countycolname}{optional name of data.frame column with county names}
 

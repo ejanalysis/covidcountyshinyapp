@@ -9,7 +9,9 @@ covidPlotTrend(x, countylist = NULL, perx = 1e+05, ndays, ...)
 \arguments{
 \item{x}{from covidDownload()}
 
-\item{countylist}{vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()\link{ , "fullname"})}
+\item{countylist}{vector of county names like "Montgomery County, Maryland" as found in unique fullname entries in covidDownload()}
+
+\item{perx}{per how many people}
 
 \item{ndays}{show only the last ndays days of data}
 

@@ -3,7 +3,7 @@
 #' Create appropriately aggregated statistics on cases etc. from all counties in the data.frame
 #'
 #' @param df data.frame from covidDownload()
-#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
+#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique fullname entries in covidDownload()
 #' @param countycolname optional name of data.frame column with county names
 #' @param datecolname optional name of data.frame column with date
 #'

@@ -1,7 +1,7 @@
 #' covidPlotContagious
 #'
 #' @param x from covidDownload
-#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
+#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique fullname entries in covidDownload()
 #' @param ndays show only the last ndays days of data
 #' @param dayscontagious how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious
 #' @param perx per how many, such as per 100 or per 100000
@@ -51,11 +51,11 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
 
   if (show) {
 
-    maintitle <- paste('Still contagious as of ', asofhere, ' if contagious for ', dayscontagious, ' days after reported positive',
+    maintitle <- paste('Contagious ', asofhere, ' if contagious ', dayscontagious, ' days after positive',
                        # round(100*here$percapnow[here$date == asofhere], 3),
                        # 'per 100 people (1 in', oneperasof, ') in ', myplace,
                        sep = '')
-    ylab = paste('Still contagious/', perx, 'people, if contagious for', dayscontagious, 'days')
+    ylab = paste('Contagious/', perx, 'people, if lasts', dayscontagious, 'days')
 
     if (is.null(ylim)) {
       myylim <- perx * c(min(here$percapnow, na.rm = T), max(here$percapnow, na.rm = T))
@@ -69,7 +69,7 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
       # ******* THIS IS NOT THE RIGHT NUMBER IF YOU CHANGE LAST N DAYS TO SMALLER VALUE, AS CALCULATED NOW
       whenwasliketoday <- min(here$date[perx*here$percapnow > tail(perx*here$percapnow, 1)])
       if (is.na(whenwasliketoday)) {whenwasliketoday <- 'at no prior time.'}
-      dateinfo <- paste('Now prevalence is same as it was ', whenwasliketoday)
+      dateinfo <- paste('Now rate is what it was ', whenwasliketoday)
     } else {
       dateinfo <- ''
     }

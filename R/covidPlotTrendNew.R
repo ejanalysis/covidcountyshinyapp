@@ -1,7 +1,7 @@
 #' covidPlotTrendNew
 #'
 #' @param x from covidDownload
-#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
+#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique fullname entries in covidDownload()
 #' @param averagingtime how many days to include in the running average
 #' @param smoothspan parameter controlling how localized or smoothed the loess curve should be
 #' @param ndays show only the last ndays days of data
@@ -44,8 +44,8 @@ covidPlotTrendNew <- function(x, countylist = NULL,
   newcasestoday <- tail(dailychange, 1)
   xvals <- 1:length(dailychange)
 
-  maintitle <- paste("New cases each day (", averagingtime, '-day running average) ',  myplace, ' as of ', asofhere, ' for past ', ndays, ' days avail.', sep = '')
-  subtitle <- paste('Most recent day saw ', newcasestoday, ' new cases among ', round(here$pop[1] / 1e6, 3), ' million people in area, or ', round(1e6 * newcasestoday / here$pop[1], 1), ' new cases per million people/day', sep = '')
+  maintitle <- paste("New cases/day (", averagingtime, '-day running avg) ',  myplace, ' as of ', asofhere, ' for past ', ndays, ' days avail.', sep = '')
+  subtitle <- paste('Most recent day: ', newcasestoday, ' new cases in ', round(here$pop[1] / 1e6, 3), ' million people in area, or ', round(1e6 * newcasestoday / here$pop[1], 1), ' new cases/mill. people/day', sep = '')
 
   color.loess <- 'blue'
   color.running <- 'gray'
@@ -57,7 +57,7 @@ covidPlotTrendNew <- function(x, countylist = NULL,
   # PLOT raw data, running avg, and locally smoothed polynomial lowess curve
   plot(dailychange, type = 'p', col = color.daily,
        main = maintitle, sub = subtitle,
-       xlab = 'Day #', ylab = 'New cases each day',
+       xlab = 'Day #', ylab = 'New cases/day',
        ylim = c(0, max(dailychange) * 1.05), ...)
   lines(c(round(caTools::runmean(dailychange, averagingtime, align = 'right'))), type = 'o', col = color.running)
   lines(lowess(xvals, dailychange, f = smoothspan), col = color.loess)
@@ -92,8 +92,8 @@ covidPlotTrendNew <- function(x, countylist = NULL,
   legend('top', #xvals[2],  (max(dailychange) * 0.98),
          legend = c(
            'new cases daily',
-           paste(averagingtime, '-day running average of new cases', sep = ''),
-           'lowess smoothing, local-wtd polynomial regression',
+           paste(averagingtime, '-day running avg new cases', sep = ''),
+           'lowess smoothed, local-wtd polynomial regression',
            paste('last', lastn, 'days fit to daily values'),
            paste('last', lastn, 'days avg')
          ),

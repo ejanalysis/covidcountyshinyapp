@@ -9,7 +9,7 @@ latestcontagiouspercap(x, countylist = NULL, dayscontagious = 14)
 \arguments{
 \item{x}{from covidDownload() a data.frame with fullname, new, date, pop}
 
-\item{countylist}{vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()\link{ , "fullname"})}
+\item{countylist}{vector of county names like "Montgomery County, Maryland" as found in unique fullname entries in covidDownload()}
 
 \item{dayscontagious}{how many recent days of new cases to add together, as a way to approximate how many people are currently still contagious}
 }

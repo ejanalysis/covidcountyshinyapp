@@ -1,7 +1,7 @@
 #' covidPlotTrendNewEachPlace
 #'
 #' @param x from covidDownload
-#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
+#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique fullname entries in covidDownload()
 #' @param averagingtime how many days to include in the running average
 #' @param smoothspan parameter controlling how localized or smoothed the loess curve should be
 #' @param ndays show only the last ndays days of data

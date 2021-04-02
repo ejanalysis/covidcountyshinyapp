@@ -1,7 +1,7 @@
 #' covidPlotTrendNewRunFit
 #'
 #' @param x from covidDownload
-#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique(covidDownload()[ , "fullname"])
+#' @param countylist vector of county names like "Montgomery County, Maryland" as found in unique fullname entries in covidDownload()
 #' @param averagingtime how many days to include in the running average
 #' @param ndays show only the last ndays days of data
 #' @param lastn how many days to use in fitting line to a few recent days
@@ -34,7 +34,7 @@ covidPlotTrendNewRunFit <- function(x, countylist = NULL, averagingtime=3, ndays
   # PLOT #####
   runav <- c(round(caTools::runmean(dailychange, averagingtime, align = 'right')))
   asofhere <- max(here$date)
-  maintitle <- paste("New cases each day (", averagingtime, '-day running average) ',  myplace, ' as of ', asofhere, ' for past ', ndays, ' days avail.', sep = '')
+  maintitle <- paste("New cases/day (", averagingtime, '-day running avg) ',  myplace, ' as of ', asofhere, ' for past ', ndays, ' days avail.', sep = '')
   color.running <- 'gray'
   color.recentfit <- 'green' # color.loess <- 'blue'  # color.recentavg <- 'black' #  # color.daily <- 'red'
   plot(runav,  # x = xvals, y = runav,
@@ -58,8 +58,8 @@ covidPlotTrendNewRunFit <- function(x, countylist = NULL, averagingtime=3, ndays
   }
   legend('top', # xvals[2], round(max(runav) * 4/5),
          legend = c(
-           paste(averagingtime, '-day running average of new cases', sep = ''),
-           paste('last ', lastn, ' days fit to ', averagingtime,'-day running average', sep = '')
+           paste(averagingtime, '-day running avg new cases', sep = ''),
+           paste('last ', lastn, ' day fit to ', averagingtime,'-day running avg', sep = '')
          ),
          col = c(
            color.running,
