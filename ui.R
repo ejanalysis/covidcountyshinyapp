@@ -36,9 +36,15 @@ shinyUI(
         sidebarLayout(
             ########## sidebarPanel ##########
             sidebarPanel(
+                
+                # shiny::selectizeInput('countyinput', label='Counties for Trend Plot', 
+                # selected = defaultareanamestostart,
+                # multiple = TRUE, choices = allcounties),  # if done server-side
+
                 shiny::selectInput('countylistinput', 'Counties for Trend Plot',
                                    selected = defaultareanamestostart,
                                    multiple = TRUE, choices = allcounties),
+                
                 shiny::selectInput('statelistinput', 'States for Trend Plot (counties added to any selected above)',
                                    # selected, #start with none
                                    multiple = TRUE, choices = allstates),

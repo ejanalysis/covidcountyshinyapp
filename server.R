@@ -5,6 +5,9 @@
 #  # and that way the locally installed version retains info on where it is on github
 #  # so that hosting service can obtain and install it on their server
 
+# Warning: The select input "countylistinput" contains a large number of options; 
+# consider using server-side selectize for massively improved performance. 
+# See the Details section of the ?selectizeInput help topic.
 
 # for county daily data see 'https://github.com/nytimes/covid-19-data/raw/master/us-counties.csv'
 # for state daily data incl pct positive of all tests see
@@ -56,7 +59,9 @@ allstates <- sort(c(state.name, 'District of Columbia'))
 
 
 shinyServer(function(input, output, session) {
-
+    
+    # updateSelectizeInput(session, 'countylistinput', choices = allcounties, server = TRUE)  # if done server-side
+    
     xlive <- shiny::reactive({
         countylist <- countylist()
         if (is.null(countylist) | length(countylist) == 0) {countylist <- unique(x$fullname)}
@@ -106,7 +111,7 @@ shinyServer(function(input, output, session) {
     server = TRUE)
 
     output$assumed.dayscontagious <- renderText({
-        paste('Assuming # currently contagious = all new cases in the last ', input$dayscontagious, 'days', sep = '' )
+        paste('Assuming # currently contagious = all new cases in the last ', input$dayscontagious, ' days', sep = '' )
     })
     output$assumed.ascertainmentbias <- renderText({
         paste('Assuming # of true cases = ', as.numeric(input$ascertainmentbias), 'x tested positive', sep = '' )

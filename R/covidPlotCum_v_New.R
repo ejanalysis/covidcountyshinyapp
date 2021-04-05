@@ -28,7 +28,7 @@ covidPlotCum_v_New <- function(x, countylist = NULL, averagingtime=3, ndays) {
   here <- here[(NROW(here) - ndays + 1):NROW(here), ] # show only the last n days of data
   asofhere <- max(here$date)
 
-  maintitle <- paste("New cases/mill. people each day (", averagingtime, '-day running average) ', myplace, ' as of ', asofhere, ' for past ', ndays, ' days avail.', sep = '')
+  maintitle <- paste("New cases/mill. people each day (", averagingtime, '-day average) ', myplace, ' as of ', asofhere, ' for past ', ndays, ' days avail.', sep = '')
   # To see NEW cases added each day, and running avg of that:
 
   # Do I really want the x axis to be a running avg??? prob not

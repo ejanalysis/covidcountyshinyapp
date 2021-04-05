@@ -44,8 +44,8 @@ covidPlotTrendNew <- function(x, countylist = NULL,
   newcasestoday <- tail(dailychange, 1)
   xvals <- 1:length(dailychange)
 
-  maintitle <- paste("New cases/day (", averagingtime, '-day running avg) ',  myplace, ' as of ', asofhere, ' for past ', ndays, ' days avail.', sep = '')
-  subtitle <- paste('Most recent day: ', newcasestoday, ' new cases in ', round(here$pop[1] / 1e6, 3), ' million people in area, or ', round(1e6 * newcasestoday / here$pop[1], 1), ' new cases/mill. people/day', sep = '')
+  maintitle <- paste("New cases/day (", averagingtime, '-day avg) ',  myplace, ' as of ', asofhere, ', past ', ndays, ' days', sep = '')
+  subtitle <- paste('Most recent day: ', newcasestoday, ' new cases in ', round(here$pop[1] / 1e6, 3), ' mill. people in area, or ', round(1e6 * newcasestoday / here$pop[1], 1), ' new cases/mill /day', sep = '')
 
   color.loess <- 'blue'
   color.running <- 'gray'
@@ -92,8 +92,8 @@ covidPlotTrendNew <- function(x, countylist = NULL,
   legend('top', #xvals[2],  (max(dailychange) * 0.98),
          legend = c(
            'new cases daily',
-           paste(averagingtime, '-day running avg new cases', sep = ''),
-           'lowess smoothed, local-wtd polynomial regression',
+           paste(averagingtime, '-day avg new cases', sep = ''),
+           'lowess smoothed',
            paste('last', lastn, 'days fit to daily values'),
            paste('last', lastn, 'days avg')
          ),

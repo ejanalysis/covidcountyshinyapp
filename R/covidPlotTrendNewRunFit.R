@@ -34,7 +34,7 @@ covidPlotTrendNewRunFit <- function(x, countylist = NULL, averagingtime=3, ndays
   # PLOT #####
   runav <- c(round(caTools::runmean(dailychange, averagingtime, align = 'right')))
   asofhere <- max(here$date)
-  maintitle <- paste("New cases/day (", averagingtime, '-day running avg) ',  myplace, ' as of ', asofhere, ' for past ', ndays, ' days avail.', sep = '')
+  maintitle <- paste("New cases/day (", averagingtime, '-day avg) ',  myplace, ' as of ', asofhere, ' for past ', ndays, ' days avail.', sep = '')
   color.running <- 'gray'
   color.recentfit <- 'green' # color.loess <- 'blue'  # color.recentavg <- 'black' #  # color.daily <- 'red'
   plot(runav,  # x = xvals, y = runav,
@@ -58,8 +58,8 @@ covidPlotTrendNewRunFit <- function(x, countylist = NULL, averagingtime=3, ndays
   }
   legend('top', # xvals[2], round(max(runav) * 4/5),
          legend = c(
-           paste(averagingtime, '-day running avg new cases', sep = ''),
-           paste('last ', lastn, ' day fit to ', averagingtime,'-day running avg', sep = '')
+           paste(averagingtime, '-day avg new cases', sep = ''),
+           paste('last ', lastn, ' day fit to ', averagingtime,'-day avg', sep = '')
          ),
          col = c(
            color.running,

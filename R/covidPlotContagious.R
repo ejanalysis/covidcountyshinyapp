@@ -55,7 +55,7 @@ covidPlotContagious  <- function(x, countylist = NULL, ndays, dayscontagious=14,
                        # round(100*here$percapnow[here$date == asofhere], 3),
                        # 'per 100 people (1 in', oneperasof, ') in ', myplace,
                        sep = '')
-    ylab = paste('Contagious/', perx, 'people, if lasts', dayscontagious, 'days')
+    ylab = paste('Contagious/', format(perx,scientific=FALSE, big.mark=','), 'people, if lasts', dayscontagious, 'days')
 
     if (is.null(ylim)) {
       myylim <- perx * c(min(here$percapnow, na.rm = T), max(here$percapnow, na.rm = T))

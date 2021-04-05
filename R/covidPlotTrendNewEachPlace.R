@@ -54,12 +54,12 @@ covidPlotTrendNewEachPlace <- function(x, countylist = c('Montgomery County, Mar
     if (percap) {
       dailychange[[i]] <- -1 * rev(c(diff(rev(1e6 * here$percap)), 0))
       ylab <- 'New cases per million people, per day'
-      maintitle <- paste("New cases/mill. people each day (", averagingtime, '-day running average) ', myplace, ' as of ', asofhere, ' for past ', ndays, ' days avail.', sep = '')
+      maintitle <- paste("New cases/mill. people each day (", averagingtime, '-day avg) ', myplace, ' as of ', asofhere, ' for past ', ndays, ' days avail.', sep = '')
 
     } else {
       dailychange[[i]] <- -1 * rev(c(diff(rev(here$cases)), 0))
       ylab <- 'New cases per day'
-      maintitle <- paste("New cases each day (", averagingtime, '-day running average) ',  myplace, ' as of ', asofhere, ' for past ', ndays, ' days avail.', sep = '')
+      maintitle <- paste("New cases each day (", averagingtime, '-day avg) ',  myplace, ' as of ', asofhere, ' for past ', ndays, ' days avail.', sep = '')
     }
     dailychange[[i]][1] <- dailychange[[i]][2] # since I dont know the true value but it is not zero
     xvals[[i]] <- here$date #1:length(dailychange) # this can vary by place
